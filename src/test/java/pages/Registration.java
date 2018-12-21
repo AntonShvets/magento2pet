@@ -9,10 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by anton on 09/05/18.
  * The class that describes Registration page behavior
@@ -25,49 +21,49 @@ public class Registration extends BasePage {
         super(true);
     }
 
-    @FindBy (css = ".action.submit.primary")
+    @FindBy(css = ".action.submit.primary")
     public WebElement createAccountButton;
 
-    @FindBy (css = "#firstname")
+    @FindBy(css = "#firstname")
     private WebElement firstNameField;
 
-    @FindBy (css = "#lastname")
+    @FindBy(css = "#lastname")
     private WebElement lastNameField;
 
-    @FindBy (css = "#is_subscribed")
+    @FindBy(css = "#is_subscribed")
     private WebElement newsletterCheckbox;
 
-    @FindBy (css = "#dob")
+    @FindBy(css = "#dob")
     private WebElement dateOfBirthField;
 
-    @FindBy (css = "#gender")
+    @FindBy(css = "#gender")
     private WebElement genderField;
 
-    @FindBy (css = "#email_address")
+    @FindBy(css = "#email_address")
     private WebElement emailField;
 
-    @FindBy (css = "#password")
+    @FindBy(css = "#password")
     private WebElement passwordField;
 
-    @FindBy (css = "#password-confirmation")
+    @FindBy(css = "#password-confirmation")
     private WebElement confirmPasswordField;
 
-    @FindBy (css = ".message-success.success.message>div")
+    @FindBy(css = ".message-success.success.message>div")
     private WebElement successMessage;
 
-    @FindBy (id = "firstname-error")
+    @FindBy(id = "firstname-error")
     public WebElement firstNameErrorMessage;
 
-    @FindBy (id = "lastname-error")
+    @FindBy(id = "lastname-error")
     public WebElement lastNameErrorMessage;
 
-    @FindBy (id = "email_address-error")
+    @FindBy(id = "email_address-error")
     public WebElement emailErrorMessage;
 
-    @FindBy (id = "password-error")
+    @FindBy(id = "password-error")
     public WebElement passwordErrorMessage;
 
-    @FindBy (id = "password-confirmation-error")
+    @FindBy(id = "password-confirmation-error")
     public WebElement passwordConfirmationErrorMessage;
 
     @Override

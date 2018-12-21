@@ -16,31 +16,31 @@ public class GiftCardPage extends BasePage {
         super(true);
     }
 
-    @FindBy (css = "#product-addtocart-button")
+    @FindBy(css = "#product-addtocart-button")
     private WebElement addToCartButton;
 
-    @FindBy (css = "#giftcard-amount-input")
+    @FindBy(css = "#giftcard-amount-input")
     private WebElement cardAmountField;
 
-    @FindBy (css = "#qty")
+    @FindBy(css = "#qty")
     private WebElement quantityField;
 
-    @FindBy (css = "#giftcard_recipient_name")
+    @FindBy(css = "#giftcard_recipient_name")
     private WebElement toField;
 
-    @FindBy (css = "#giftcard_sender_name")
+    @FindBy(css = "#giftcard_sender_name")
     private WebElement fromField;
 
-    @FindBy (css = "#giftcard-message")
+    @FindBy(css = "#giftcard-message")
     private WebElement messageField;
 
-    @FindBy (css = "#giftcard-amount-input-error")
+    @FindBy(css = "#giftcard-amount-input-error")
     private WebElement amountErrorMessage;
 
-    @FindBy (xpath = "//div[contains(text(), 'You added Gift card to your shopping cart.')]")
+    @FindBy(xpath = "//div[contains(text(), 'You added Gift card to your shopping cart.')]")
     private WebElement successMessage;
 
-    @FindBy (id = "giftcard-amount-input-error")
+    @FindBy(id = "giftcard-amount-input-error")
     private WebElement inputErrorMessage;
 
     @Override

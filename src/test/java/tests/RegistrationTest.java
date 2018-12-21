@@ -3,9 +3,7 @@ package tests;
 import data.InputData;
 import org.testng.annotations.Test;
 import pages.*;
-import test.webtestsbase.Drivers;
 import utilities.ConditionsWebDriverFactory;
-import static data.Links.*;
 
 /**
  * Created by anton on 09/05/18.
@@ -25,6 +23,7 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
         registration.registerNewUser();
 
         Logout logout = new Logout();
+        logout.successful();
     }
 
     /*

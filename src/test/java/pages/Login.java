@@ -1,12 +1,10 @@
 package pages;
 
 import data.Links;
-import data.Users;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sun.awt.image.ImageWatched;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
 
@@ -21,19 +19,19 @@ public class Login extends BasePage {
         super(true);
     }
 
-    @FindBy (css = "#send2")
+    @FindBy(css = "#send2")
     private WebElement signInButton;
 
-    @FindBy (id = "email")
+    @FindBy(id = "email")
     private WebElement emailField;
 
-    @FindBy (css = "#pass")
+    @FindBy(css = "#pass")
     public WebElement passwordField;
 
-    @FindBy (xpath = "//a[contains(text(), 'My giftcards')]")
+    @FindBy(xpath = "//a[contains(text(), 'My giftcards')]")
     private WebElement myGiftCardsLink;
 
-    @FindBy (xpath = "//div[contains(@data-ui-id, 'message-error')]")
+    @FindBy(xpath = "//div[contains(@data-ui-id, 'message-error')]")
     private WebElement loginErrorMessage;
 
     @Override

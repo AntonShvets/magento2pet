@@ -3,9 +3,9 @@ package pages;
 import data.Links;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import test.webtestsbase.BasePage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test.webtestsbase.BasePage;
 
 /**
  * Created by anton on 15/05/18.
@@ -19,10 +19,10 @@ public class Cart extends BasePage {
         super(true);
     }
 
-    @FindBy (xpath = "//span[text()='Shopping Cart']")
+    @FindBy(xpath = "//span[text()='Shopping Cart']")
     private WebElement shoppingCartText;
 
-    @FindBy (xpath = "//button[contains(@data-role,'proceed-to-checkout')]")
+    @FindBy(xpath = "//button[contains(@data-role,'proceed-to-checkout')]")
     private WebElement proceedToCheckoutButton;
 
     @Override

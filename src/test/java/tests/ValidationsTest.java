@@ -2,8 +2,11 @@ package tests;
 
 import data.InputData;
 import data.Users;
-import pages.*;
 import org.testng.annotations.Test;
+import pages.GiftCardPage;
+import pages.Login;
+import pages.Logout;
+import pages.Registration;
 import utilities.ConditionsWebDriverFactory;
 
 /**

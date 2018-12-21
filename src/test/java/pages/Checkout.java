@@ -1,7 +1,5 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
 
-import java.security.Key;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,62 +25,62 @@ public class Checkout extends BasePage {
     @FindBy(xpath = "//button[contains(@data-role,'opc-continue')]")
     private WebElement nextButton;
 
-    @FindBy (id = "customer-email")
+    @FindBy(id = "customer-email")
     private WebElement emailField;
 
-    @FindBy (name = "firstname")
+    @FindBy(name = "firstname")
     private WebElement firstNameField;
 
-    @FindBy (name = "lastname")
+    @FindBy(name = "lastname")
     private WebElement lastNameField;
 
-    @FindBy (name = "company")
+    @FindBy(name = "company")
     private WebElement companyField;
 
-    @FindBy (name = "street[0]")
+    @FindBy(name = "street[0]")
     private WebElement streetOneField;
 
-    @FindBy (name = "street[1]")
+    @FindBy(name = "street[1]")
     private WebElement streetTwoField;
 
-    @FindBy (name = "city")
+    @FindBy(name = "city")
     private WebElement cityField;
 
-    @FindBy (name = "region")
+    @FindBy(name = "region")
     private WebElement stateProvinceField;
 
-    @FindBy (name = "postcode")
+    @FindBy(name = "postcode")
     private WebElement zipCodeField;
 
-    @FindBy (name = "telephone")
+    @FindBy(name = "telephone")
     private WebElement phoneNumberField;
 
-    @FindBy (xpath = "//input[contains(@name,'ko_unique')]")
+    @FindBy(xpath = "//input[contains(@name,'ko_unique')]")
     private WebElement standardPostCheckbox;
 
 //    @FindBy (xpath = "//input[contains(@name,'ko_unique_2')]")
 //    private WebElement courierPostCheckbox;
 
-    @FindBy (xpath = "//button[contains(@title,'Place Order')]")
+    @FindBy(xpath = "//button[contains(@title,'Place Order')]")
     private WebElement placeOrderButton;
 
-    @FindBy (xpath = "//span[contains(text(),'Thank you for your purchase!')]")
+    @FindBy(xpath = "//span[contains(text(),'Thank you for your purchase!')]")
     private WebElement orderConfirmationMessage;
 
-    @FindBy (xpath = "//input[contains(@value,'Create an Account')]")
+    @FindBy(xpath = "//input[contains(@value,'Create an Account')]")
     private WebElement createAnAccountButton;
 
-    @FindBy (xpath = "//p[contains(text(), 'A letter with further instructions will be sent to your email.')]")
+    @FindBy(xpath = "//p[contains(text(), 'A letter with further instructions will be sent to your email.')]")
     private WebElement registrationMailMessage;
 
-    @FindBy (xpath = "//span[contains(text(), 'Check / Money order')]")
+    @FindBy(xpath = "//span[contains(text(), 'Check / Money order')]")
     private WebElement checkMoneyOrderButton;
 
-    @FindBy (xpath = "//input[contains(@value,'checkmo')]")
+    @FindBy(xpath = "//input[contains(@value,'checkmo')]")
     private WebElement checkMoneyCheckBox;
 
     @FindAll({
-            @FindBy (xpath = "//button[contains(@title,'Place Order')]")
+            @FindBy(xpath = "//button[contains(@title,'Place Order')]")
     }) public List<WebElement> placeOrderList;
 
     @Override

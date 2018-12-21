@@ -19,7 +19,7 @@ public class ConditionsWebDriverFactory {
     public void beforeTest() {
         Drivers.startBrowser(true);
         Drivers.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        Drivers.getDriver().manage().window().maximize();
+        //Drivers.getDriver().manage().window().maximize();
     }
 
     @AfterClass(alwaysRun = true)

@@ -6,9 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
-import test.webtestsbase.Drivers;
-
-import static test.webtestsbase.Drivers.getDriver;
 
 /**
  * Created by anton on 14/05/18.
