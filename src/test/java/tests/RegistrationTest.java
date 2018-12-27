@@ -13,8 +13,7 @@ import utilities.ConditionsWebDriverFactory;
 public class RegistrationTest extends ConditionsWebDriverFactory {
 
     /*
-    Test case #1357
-    https://monsoonconsulting.testrail.io/index.php?/cases/view/1357
+    1. Register new user successfully
     */
     @Test
     public void customerRegistration() {
@@ -27,8 +26,10 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     }
 
     /*
-    Test case #1359
-    https://monsoonconsulting.testrail.io/index.php?/cases/view/1359
+    2. Registration page:
+    Fields validations (Negative):
+     - required
+     - duplications
      */
     @Test (dataProviderClass = InputData.class, dataProvider = "correctGiftCardData")
     public void guestOrderRegistration(String amount, String quantity, String to, String from, String message) {

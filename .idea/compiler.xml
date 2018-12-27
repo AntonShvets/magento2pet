@@ -9,5 +9,8 @@
         <module name="magento2pet" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="magento2pet" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
