@@ -16,7 +16,7 @@ public class Users {
     DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
     Date date = new Date();
 
-    public static final String permanentUserName = "selenium_test@monsoonconsulting.com";
+    public static final String permanentUserName = "anton.shvets.88+selenium.webdriver@gmail.com";
 
     public void setCustomerName() {
         customerEmail = "anton.shvets.88+"+ dateFormat.format(date) + "@gmail.com";
@@ -29,13 +29,13 @@ public class Users {
 
     public String getCorrectPassword() {
 
-        password = "monsoon@123";
+        password = "Password@123";
         return password;
     }
 
     public String getIncorrectPassword() {
 
-        password = "monsoon@12";
+        password = "Password@12";
         return password;
     }
 

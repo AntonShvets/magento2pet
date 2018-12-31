@@ -1,11 +1,15 @@
 package pages;
 
+import data.Users;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
+import test.webtestsbase.Drivers;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -43,20 +47,28 @@ public class Checkout extends BasePage {
     @FindBy(name = "street[1]")
     private WebElement streetTwoField;
 
+    @FindBy(name = "street[2]")
+    private WebElement streetThreeField;
+
     @FindBy(name = "city")
     private WebElement cityField;
-
-    @FindBy(name = "region")
-    private WebElement stateProvinceField;
 
     @FindBy(name = "postcode")
     private WebElement zipCodeField;
 
+    @FindBy(name = "region")
+    private WebElement stateProvinceField;
+
+    Select countryDropDown = new Select(Drivers.getDriver().findElement(By.name("country_id")));
+
+//    Select stateProvinceDropDown = new Select(Drivers.getDriver().findElement(By.name("region_id")));
+
+
     @FindBy(name = "telephone")
     private WebElement phoneNumberField;
 
-    @FindBy(xpath = "//input[contains(@name,'ko_unique')]")
-    private WebElement standardPostCheckbox;
+    @FindBy(xpath = "//input[contains(@value,'flatrate_flatrate')]")
+    private WebElement flatRateCheckbox;
 
 //    @FindBy (xpath = "//input[contains(@name,'ko_unique_2')]")
 //    private WebElement courierPostCheckbox;
@@ -70,9 +82,6 @@ public class Checkout extends BasePage {
     @FindBy(xpath = "//input[contains(@value,'Create an Account')]")
     private WebElement createAnAccountButton;
 
-    @FindBy(xpath = "//p[contains(text(), 'A letter with further instructions will be sent to your email.')]")
-    private WebElement registrationMailMessage;
-
     @FindBy(xpath = "//span[contains(text(), 'Check / Money order')]")
     private WebElement checkMoneyOrderButton;
 
@@ -82,6 +91,18 @@ public class Checkout extends BasePage {
     @FindAll({
             @FindBy(xpath = "//button[contains(@title,'Place Order')]")
     }) public List<WebElement> placeOrderList;
+
+    @FindBy(name = "password")
+    private WebElement passwordField;
+
+    @FindBy(name = "password_confirmation")
+    private WebElement passwordConfirmationField;
+
+    @FindBy(xpath = "//button[contains(@title,'Create an Account')]")
+    public WebElement createAccountButton;
+
+    @FindBy (xpath = "//span[contains(text(),'My Account')]")
+    public WebElement myAccountText;
 
     @Override
     protected void openPage() {
@@ -106,10 +127,16 @@ public class Checkout extends BasePage {
         lastNameField.sendKeys("WebDriver");
     }
 
-    public void registerGuestButtonCheck() {
+    public void registerGuestUser() {
+        Users user = new Users();
+
         createAnAccountButton.isDisplayed();
         createAnAccountButton.click();
-        registrationMailMessage.isDisplayed();
+
+        passwordField.sendKeys(user.getCorrectPassword());
+        passwordConfirmationField.sendKeys(user.getCorrectPassword());
+        createAccountButton.click();
+        myAccountText.isDisplayed();
     }
 
     public void fillInShippingDetails() {
@@ -127,32 +154,48 @@ public class Checkout extends BasePage {
         phoneNumberField.sendKeys("08312345678");
     }
 
-    public void chooseShippingMethodProceed() {
+    public void fillInGuestShippingDetails() {
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        emailField.sendKeys("test@test.com");
+        firstNameField.sendKeys("test");
+        lastNameField.sendKeys("test");
+        companyField.sendKeys("test");
+        streetOneField.sendKeys("test");
+        streetTwoField.sendKeys("test");
+        streetThreeField.sendKeys("test");
+        cityField.sendKeys("test");
+        countryDropDown.selectByVisibleText("Ireland");
+        zipCodeField.sendKeys("test");
+        phoneNumberField.sendKeys("0838844074");
+        stateProvinceField.sendKeys("Dublin");
 
-        standardPostCheckbox.click();
+        //FIX DROP_DOWNS
+
+    }
+
+    public void chooseShippingMethodProceed(String method) {
+
+        if (method == "FlatRate") {
+            flatRateCheckbox.click();
+        } else nextButton.click();
+
         nextButton.click();
     }
 
     public void placeOrderAsGuest() {
+
         placeOrderButton.isDisplayed();
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
+        wait.until(ExpectedConditions.elementToBeClickable(placeOrderButton));
 
-        for (WebElement element : placeOrderList) {
-            if (element.isDisplayed()) {
-                element.click();
-            }
-        }
+//        for (WebElement element : placeOrderList) {
+//            if (element.isDisplayed()) {
+//                element.click();
+//            }
+//        }
+
+        placeOrderButton.click();
 
         orderConfirmationMessage.isDisplayed();
     }

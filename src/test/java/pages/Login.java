@@ -28,8 +28,8 @@ public class Login extends BasePage {
     @FindBy(css = "#pass")
     public WebElement passwordField;
 
-    @FindBy(xpath = "//a[contains(text(), 'My giftcards')]")
-    private WebElement myGiftCardsLink;
+    @FindBy(xpath = "//a[contains(text(), 'My Account')]")
+    private WebElement myAccountText;
 
     @FindBy(xpath = "//div[contains(@data-ui-id, 'message-error')]")
     private WebElement loginErrorMessage;
@@ -65,7 +65,7 @@ public class Login extends BasePage {
     }
 
     public void loginSuccessfull() {
-        myGiftCardsLink.isDisplayed();
+        myAccountText.isDisplayed();
         System.out.println("User logged in successfully");
     }
 

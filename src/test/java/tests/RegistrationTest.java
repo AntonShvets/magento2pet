@@ -26,13 +26,37 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     }
 
     /*
-    2. Registration page:
+    2. Register new user after placing a guest order
+    */
+    @Test
+    public void guestOrderCustomerRegistration() {
+
+        ProductPage page = new ProductPage();
+        page.open("arcadio-gym-short.html");
+        page.selectSize(32);
+        page.selectColor("Red");
+        page.addToCart();
+
+        Cart cart = new Cart();
+        cart.proceedToCheckout();
+
+        Checkout checkout = new Checkout();
+        checkout.fillInGuestShippingDetails();
+        checkout.chooseShippingMethodProceed("FlatRate");
+        checkout.placeOrderAsGuest();
+        checkout.registerGuestUser();
+
+    }
+
+    /*
+    3. Registration page:
     Fields validations (Negative):
      - required
      - duplications
      */
     @Test (dataProviderClass = InputData.class, dataProvider = "correctGiftCardData")
     public void guestOrderRegistration(String amount, String quantity, String to, String from, String message) {
+
         GiftCardPage page = new GiftCardPage();
         page.open();
         page.addToCart(amount, quantity, to, from, message);
@@ -44,8 +68,8 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
         Checkout checkout = new Checkout();
         checkout.fillInGuestData();
         checkout.fillInShippingDetails();
-        checkout.chooseShippingMethodProceed();
+        checkout.chooseShippingMethodProceed("FlatRate");
         checkout.placeOrderAsGuest();
-        checkout.registerGuestButtonCheck();
+        checkout.registerGuestUser();
     }
 }
