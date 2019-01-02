@@ -154,9 +154,9 @@ public class Checkout extends BasePage {
         phoneNumberField.sendKeys("08312345678");
     }
 
-    public void fillInGuestShippingDetails() {
+    public void fillInGuestShippingDetails(String email) {
 
-        emailField.sendKeys("test@test.com");
+        emailField.sendKeys(email);
         firstNameField.sendKeys("test");
         lastNameField.sendKeys("test");
         companyField.sendKeys("test");
@@ -168,8 +168,6 @@ public class Checkout extends BasePage {
         zipCodeField.sendKeys("test");
         phoneNumberField.sendKeys("0838844074");
         stateProvinceField.sendKeys("Dublin");
-
-        //FIX DROP_DOWNS
 
     }
 

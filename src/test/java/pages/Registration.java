@@ -66,6 +66,29 @@ public class Registration extends BasePage {
     @FindBy(id = "password-confirmation-error")
     public WebElement passwordConfirmationErrorMessage;
 
+
+    /*
+    * Error messages
+    * */
+
+    @FindBy (xpath = "//div[@for='firstname' and contains(text(), 'This is a required field')]")
+    public WebElement firstNameRequiredError;
+
+    @FindBy (xpath = "//div[@for='lastname' and contains(text(), 'This is a required field')]")
+    public WebElement lastNameRequiredError;
+
+    @FindBy (xpath = "//div[@for='email_address' and contains(text(), 'This is a required field')]")
+    public WebElement emailRequiredError;
+
+    @FindBy (xpath = "//div[@for='password' and contains(text(), 'This is a required field')]")
+    public WebElement passwordRequiredError;
+
+    @FindBy (xpath = "//div[@for='password-confirmation' and contains(text(), 'This is a required field')]")
+    public WebElement passwordConfirmationRequiredError;
+
+    @FindBy (xpath = "//div[contains(text(),'There is already an account with this email address.')]")
+    public WebElement emailAlreadyExistsError;
+
     @Override
     public void openPage() {
         getDriver().get(PAGE_URL);
@@ -88,26 +111,21 @@ public class Registration extends BasePage {
 
 
 
-    public void registerNewUser() {
-        Users user = new Users();
+    public void registerNewUser(String email, String firstName, String lastName, String password) {
 
-        System.out.println("name: " + user.getName() + ", pass: " + user.getCorrectPassword());
-
-        firstNameField.sendKeys("Selenium");
-        lastNameField.sendKeys("WebDriver");
-        emailField.sendKeys(user.getName());
-        passwordField.sendKeys(user.getCorrectPassword());
-        confirmPasswordField.sendKeys("monsoon@123");
+        firstNameField.sendKeys(firstName);
+        lastNameField.sendKeys(lastName);
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
+        confirmPasswordField.sendKeys(password);
         createAccountButton.click();
+
+    }
+
+    public void registrationSuccessful() {
 
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.visibilityOf(successMessage));
-        System.out.println("Customer " + user.getName() + " registered successfully");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
     }
 }

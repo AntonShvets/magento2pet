@@ -1,6 +1,7 @@
 package tests;
 
 import data.InputData;
+import data.Users;
 import org.testng.annotations.Test;
 import pages.*;
 import utilities.ConditionsWebDriverFactory;
@@ -18,8 +19,11 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     @Test
     public void customerRegistration() {
 
+        Users user = new Users();
+
         Registration registration = new Registration();
-        registration.registerNewUser();
+        registration.registerNewUser(user.getName(), "Selenium", "WebDriver", user.getCorrectPassword());
+        registration.registrationSuccessful();
 
         Logout logout = new Logout();
         logout.successful();
@@ -40,8 +44,10 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
         Cart cart = new Cart();
         cart.proceedToCheckout();
 
+        Users user = new Users();
+
         Checkout checkout = new Checkout();
-        checkout.fillInGuestShippingDetails();
+        checkout.fillInGuestShippingDetails(user.getName());
         checkout.chooseShippingMethodProceed("FlatRate");
         checkout.placeOrderAsGuest();
         checkout.registerGuestUser();
@@ -51,25 +57,30 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     /*
     3. Registration page:
     Fields validations (Negative):
-     - required
-     - duplications
+     - all fields are required
+     - email already exists
+     - password is shorter than 8 symbols
+     - wrong confirmation password
      */
-    @Test (dataProviderClass = InputData.class, dataProvider = "correctGiftCardData")
-    public void guestOrderRegistration(String amount, String quantity, String to, String from, String message) {
+    @Test
+    public void fieldsValidation() {
 
-        GiftCardPage page = new GiftCardPage();
-        page.open();
-        page.addToCart(amount, quantity, to, from, message);
-        page.cardAddedSuccessfully();
+        // All fields are required
+        Registration requiredFields = new Registration();
+        requiredFields.createAccountButton.click();
+        requiredFields.firstNameRequiredError.isDisplayed();
+        requiredFields.lastNameRequiredError.isDisplayed();
+        requiredFields.emailRequiredError.isDisplayed();
+        requiredFields.passwordRequiredError.isDisplayed();
+        requiredFields.passwordConfirmationRequiredError.isDisplayed();
 
-        Cart cart = new Cart();
-        cart.proceedToCheckout();
+        // Email already exists
+        Users user = new Users();
 
-        Checkout checkout = new Checkout();
-        checkout.fillInGuestData();
-        checkout.fillInShippingDetails();
-        checkout.chooseShippingMethodProceed("FlatRate");
-        checkout.placeOrderAsGuest();
-        checkout.registerGuestUser();
+        Registration emailAlreadyExists = new Registration();
+        emailAlreadyExists.registerNewUser(user.permanentUserName, "Selenium", "Webdriver", user.getCorrectPassword());
+        emailAlreadyExists.emailAlreadyExistsError.isDisplayed();
+
+
     }
 }
