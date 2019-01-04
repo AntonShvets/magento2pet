@@ -61,17 +61,12 @@ public class Checkout extends BasePage {
 
     Select countryDropDown = new Select(Drivers.getDriver().findElement(By.name("country_id")));
 
-//    Select stateProvinceDropDown = new Select(Drivers.getDriver().findElement(By.name("region_id")));
-
 
     @FindBy(name = "telephone")
     private WebElement phoneNumberField;
 
     @FindBy(xpath = "//input[contains(@value,'flatrate_flatrate')]")
     private WebElement flatRateCheckbox;
-
-//    @FindBy (xpath = "//input[contains(@name,'ko_unique_2')]")
-//    private WebElement courierPostCheckbox;
 
     @FindBy(xpath = "//button[contains(@title,'Place Order')]")
     private WebElement placeOrderButton;

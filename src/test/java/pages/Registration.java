@@ -70,7 +70,6 @@ public class Registration extends BasePage {
     /*
     * Error messages
     * */
-
     @FindBy (xpath = "//div[@for='firstname' and contains(text(), 'This is a required field')]")
     public WebElement firstNameRequiredError;
 
@@ -116,9 +115,6 @@ public class Registration extends BasePage {
         System.out.println("Registration page is opened");
         return true;
     }
-
-
-
 
     public void registerNewUser(String email, String firstName, String lastName, String password, String confirmationPassword) {
 
