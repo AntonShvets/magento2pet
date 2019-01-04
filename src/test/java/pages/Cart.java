@@ -5,7 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import test.webtestsbase.BasePage;
+import test.webtestsbase.Drivers;
 
 /**
  * Created by anton on 15/05/18.
@@ -25,6 +27,9 @@ public class Cart extends BasePage {
     @FindBy(xpath = "//button[contains(@data-role,'proceed-to-checkout')]")
     private WebElement proceedToCheckoutButton;
 
+    @FindBy (xpath = "//a[contains(@class,'action action-delete')]")
+    private WebElement deleteProductButton;
+
     @Override
     public void openPage() {
         getDriver().get(PAGE_URL);
@@ -37,13 +42,24 @@ public class Cart extends BasePage {
 
         WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.titleIs(expectedTitle));
-//        elementIsPresented(trolleyBlock);
 
         System.out.println("Cart page is opened");
         return shoppingCartText.isDisplayed();
     }
 
+    public void checkIfCartIsEmpty() {
+
+        if (Drivers.getDriver().getPageSource().contains("You have no items in your shopping cart.")) {
+            System.out.println("Cart is empty");
+        } else while (!Drivers.getDriver().getPageSource().contains("You have no items in your shopping cart.")) {
+            deleteProductButton.click();
+        }
+
+    }
+
     public void proceedToCheckout() {
+
         proceedToCheckoutButton.click();
+
     }
 }

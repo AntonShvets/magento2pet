@@ -7,5 +7,6 @@ package data;
 public class Links {
 
     public final static String main = "http://magento-222384-676323.cloudwaysapps.com/";
+    public final static String productArcadioGymShort = "arcadio-gym-short.html";
 
 }

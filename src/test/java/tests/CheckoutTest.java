@@ -1,39 +1,46 @@
 package tests;
 
 import data.InputData;
+import data.Links;
 import data.Users;
 import org.testng.annotations.Test;
-import pages.Cart;
-import pages.Checkout;
-import pages.GiftCardPage;
-import pages.Login;
+import pages.*;
 import utilities.ConditionsWebDriverFactory;
 
 /**
- * Created by anton on 21/05/18.
- * TestRail project: One4All Gift Cards (Magento 2)
- * Test cases that are responsible for different Checkout procedures
+ * Test cases that cover Checkout process
  */
 public class CheckoutTest extends ConditionsWebDriverFactory {
 
-    @Test (priority = 1, dataProviderClass = InputData.class, dataProvider = "correctGiftCardData")
-    public void checkMoneyOrder(String amount, String quantity, String to, String from, String message) {
+    /*
+     * 8. Place order (Logged in user)
+     */
+    @Test (dataProviderClass = InputData.class, dataProvider = "productArcadioGymShort")
+    public void placeOrderAsLoggedIn(int size, String color) {
         Users user = new Users();
 
         Login login = new Login();
         login.logIn(Users.permanentUserName, user.getCorrectPassword());
         login.loginSuccessfull();
 
-        GiftCardPage page = new GiftCardPage();
-        page.open();
-        page.addToCart(amount, quantity, to, from, message);
-        page.cardAddedSuccessfully();
-
         Cart cart = new Cart();
-        cart.proceedToCheckout();
+        cart.checkIfCartIsEmpty();
+
+        ProductPage page = new ProductPage();
+        page.open(Links.productArcadioGymShort);
+        page.selectSize(size);
+        page.selectColor(color);
+        page.addToCart();
+
+        Cart cart2 = new Cart();
+        cart2.proceedToCheckout();
 
         Checkout checkout = new Checkout();
-        checkout.placeOrder("CheckMoney");
+        checkout.chooseShippingMethodProceed(InputData.flatRateShippingMethod);
+        checkout.placeOrder();
+
+        Logout logout = new Logout();
+        logout.successful();
     }
 
 }

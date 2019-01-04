@@ -180,58 +180,16 @@ public class Checkout extends BasePage {
         nextButton.click();
     }
 
-    public void placeOrderAsGuest() {
+    public void placeOrder() {
 
         placeOrderButton.isDisplayed();
 
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.elementToBeClickable(placeOrderButton));
 
-//        for (WebElement element : placeOrderList) {
-//            if (element.isDisplayed()) {
-//                element.click();
-//            }
-//        }
-
         placeOrderButton.click();
 
         orderConfirmationMessage.isDisplayed();
     }
-
-    public void placeOrder(String paymentMethod) {
-
-        if (paymentMethod == "CheckMoney") {
-
-            WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
-            wait.until(ExpectedConditions.elementToBeClickable(checkMoneyCheckBox));
-            System.out.println("Placing the order using " + paymentMethod + " payment method");
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            checkMoneyCheckBox.click();
-            checkMoneyOrderButton.click();
-        }
-
-        placeOrderButton.isDisplayed();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        for (WebElement element : placeOrderList) {
-            if (element.isDisplayed()) {
-                element.click();
-            }
-        }
-
-        orderConfirmationMessage.isDisplayed();
-    }
-
-
-
 
 }

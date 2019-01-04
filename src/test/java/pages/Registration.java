@@ -46,10 +46,10 @@ public class Registration extends BasePage {
     private WebElement passwordField;
 
     @FindBy(css = "#password-confirmation")
-    private WebElement confirmPasswordField;
+    public WebElement confirmPasswordField;
 
     @FindBy(css = ".message-success.success.message>div")
-    private WebElement successMessage;
+    public WebElement successMessage;
 
     @FindBy(id = "firstname-error")
     public WebElement firstNameErrorMessage;
@@ -89,6 +89,15 @@ public class Registration extends BasePage {
     @FindBy (xpath = "//div[contains(text(),'There is already an account with this email address.')]")
     public WebElement emailAlreadyExistsError;
 
+    @FindBy (xpath = "//div[contains(text(),'Minimum length of this field must be equal or greater than 8 symbols.')]")
+    public WebElement passwordIsShortError;
+
+    @FindBy (xpath = "//div[contains(text(),'Please enter the same value again.')]")
+    public WebElement confirmationPasswordIsWrongError;
+
+    @FindBy (xpath = "//div[contains(text(),'Please enter a valid email address (Ex: johndoe@domain.com).')]")
+    public WebElement emailIsWrongError;
+
     @Override
     public void openPage() {
         getDriver().get(PAGE_URL);
@@ -111,13 +120,13 @@ public class Registration extends BasePage {
 
 
 
-    public void registerNewUser(String email, String firstName, String lastName, String password) {
+    public void registerNewUser(String email, String firstName, String lastName, String password, String confirmationPassword) {
 
         firstNameField.sendKeys(firstName);
         lastNameField.sendKeys(lastName);
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
-        confirmPasswordField.sendKeys(password);
+        confirmPasswordField.sendKeys(confirmationPassword);
         createAccountButton.click();
 
     }

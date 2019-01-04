@@ -8,29 +8,14 @@ import org.testng.annotations.DataProvider;
 
 public class InputData {
 
-    @DataProvider (name = "correctGiftCardData")
-    public static Object[][] correctGiftCardData() {
+    public static final String flatRateShippingMethod = "FlatRate";
+
+    @DataProvider (name = "productArcadioGymShort")
+    public static Object[][] attributes() {
 
         return new Object[][] {
-                {"15", "2", "WebDriver", "Selenium", "Test Selenium WebDriver message"}
-        };
-    }
-
-    @DataProvider (name = "incorrectGiftCardAmount")
-    public static Object[][] incorrectGiftCardAmount() {
-
-        return new Object[][] {
-                {"14", "", "", "", ""},
-                {"201", "", "", "", ""}
-        };
-    }
-
-    @DataProvider (name = "incorrectDigitalGiftCardAmount")
-    public static Object[][] incorrectDigitalGiftCardAmount() {
-
-        return new Object[][] {
-                {"14", "", "", "", ""},
-                {"501", "", "", "", ""}
+                // Size, Color
+                {32, "Red"}
         };
     }
 

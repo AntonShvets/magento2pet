@@ -17,13 +17,15 @@ public class Users {
     Date date = new Date();
 
     public static final String permanentUserName = "anton.shvets.88+selenium.webdriver@gmail.com";
+    public static final String defaultFirstName = "Anton";
+    public static final String defaultLastName = "Shvets";
 
-    public void setCustomerName() {
+    public void setCustomerEmail() {
         customerEmail = "anton.shvets.88+"+ dateFormat.format(date) + "@gmail.com";
     }
 
-    public String getName() {
-        setCustomerName();
+    public String getEmail() {
+        setCustomerEmail();
         return customerEmail;
     }
 
@@ -36,6 +38,12 @@ public class Users {
     public String getIncorrectPassword() {
 
         password = "Password@12";
+        return password;
+    }
+
+    public String getShortPassword() {
+
+        password = "Pass@12";
         return password;
     }
 
