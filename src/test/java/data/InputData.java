@@ -19,4 +19,31 @@ public class InputData {
         };
     }
 
+    @DataProvider (name = "searchByProductName")
+    public static Object[][] searchByProductName() {
+
+        return new Object[][] {
+                // Search word, expected number of products found
+                {"tee", 26}
+        };
+    }
+
+    @DataProvider (name = "searchByProductSku")
+    public static Object[][] searchByProductSku() {
+
+        return new Object[][] {
+                // Search word, expected number of products found
+                {"WS04", 1, "Layla Tee"}
+        };
+    }
+
+    @DataProvider (name = "searchByProductAttribute")
+    public static Object[][] searchByProductAttribute() {
+
+        return new Object[][] {
+                // Search word, expected number of products found
+                {"blue", 83}
+        };
+    }
+
 }

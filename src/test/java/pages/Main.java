@@ -6,35 +6,35 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
+import test.webtestsbase.Drivers;
 
 /**
- * Created by anton on 14/05/18.
  * Main page behavior described
  */
-class Main extends BasePage {
+public class Main extends BasePage {
 
     private static final String PAGE_URL = Links.main;
 
-    Main() {
+    public Main() {
         super(true);
     }
 
-    @FindBy(css = "#ui-id-3")
-    public WebElement buyButton;
+    @FindBy (xpath = "//button[@title='Add to Cart']")
+    private WebElement addToCartButton;
 
     @Override
     public void openPage() {
-        getDriver().get(PAGE_URL);
+        Drivers.getDriver().get(PAGE_URL);
         System.out.println("Opening Main page");
     }
 
     @Override
     public boolean isPageOpened() {
-        String expectedTitle = "Home page";
+        String expectedTitle = "Home Page";
 
-        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
-        wait.until(ExpectedConditions.titleContains(expectedTitle));
-        wait.until(ExpectedConditions.visibilityOf(buyButton));
+        WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
+        wait.until(ExpectedConditions.titleIs(expectedTitle));
+        wait.until(ExpectedConditions.visibilityOf(addToCartButton));
         System.out.println("Main page is opened");
         return true;
     }

@@ -6,10 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Catalogue extends BasePage {
@@ -77,18 +79,43 @@ public class Catalogue extends BasePage {
 
     public void sortingIsCorrect() {
 
-        String price = priceValue.getAttribute("data-price-amount");
-        System.out.print(price);
-
         ArrayList<String> obtainedList = new ArrayList<>();
         List<WebElement> elementList = priceValues;
 
+        // Creating an array of "Price" values:
         for (WebElement i:elementList){
             obtainedList.add(i.getAttribute("data-price-amount"));
-//            System.out.println(i.getAttribute("data-price-amount"));
         }
 
-        // Finish sorting comparison procedure: https://stackoverflow.com/questions/36950061/how-to-check-webelements-in-webtable-is-sorted-alphabetically-using-selenium-web
+        // Getting the array and sorting it in ascending order in the new array
+        ArrayList<String> sortedList = new ArrayList<>();
+        for (String s:obtainedList) {
+            sortedList.add(s);
+        }
+
+        Collections.sort(sortedList);
+
+        // Asserting that new sorted array is equal to the original one
+        Assert.assertTrue(sortedList.equals(obtainedList));
+
+    }
+
+    public void goToPage(int pageNumber) {
+
+        String currentUrl = Drivers.getDriver().getCurrentUrl();
+        Drivers.getDriver().get(currentUrl + "?p=" + pageNumber);
+
+    }
+
+    public void productsOnThePage(int expectedNumberOfProducts) {
+
+        // Getting a list of products that are on the page
+        List<WebElement> elementList = priceValues;
+        int actualNumberOfProducts = elementList.size();
+
+        // Asserting that actual number of products on the page equals to the expected number
+        Assert.assertEquals(expectedNumberOfProducts, actualNumberOfProducts);
+
     }
 
 }
