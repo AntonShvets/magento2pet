@@ -42,7 +42,7 @@ public class InputData {
 
         return new Object[][] {
                 // Search word, expected number of products found
-                {"blue", 83}
+                {"blue", 9}
         };
     }
 

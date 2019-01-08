@@ -27,7 +27,7 @@ public class SearchTest extends ConditionsWebDriverFactory {
         Search search = new Search();
         search.searchBy(searchText);
         search.expectedNumberOfProducts(numberOfProducts);
-        search.productNameIsDispayed(productName);
+        search.productNameIsDisplayed(productName);
 
     }
 
@@ -39,7 +39,7 @@ public class SearchTest extends ConditionsWebDriverFactory {
         Search search = new Search();
         search.searchBy(searchText);
         search.expectedNumberOfProducts(numberOfProducts);
-        // to create a validation that search results page contains 9 "blue" buttons
+        search.productsWithAttributeDisplayed("Blue", numberOfProducts);
 
     }
 

@@ -3,9 +3,13 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
+
+import java.util.List;
 
 public class Search extends BasePage {
 
@@ -45,9 +49,20 @@ public class Search extends BasePage {
 
     }
 
-    public void productNameIsDispayed(String productName) {
+    public void productNameIsDisplayed(String productName) {
 
         WebElement name = Drivers.getDriver().findElement(By.xpath("//a[contains(@class,'product-item-link') and contains(text(),'" + productName + "')]"));
         name.isDisplayed();
+    }
+
+    public void productsWithAttributeDisplayed(String color, int numberOfProducts) {
+
+        // Getting an array of elements that have appropriate color attribute
+        List<WebElement> list = Drivers.getDriver().findElements(By.xpath("//div[contains(@class,'swatch-option color') and contains(@option-label,'" + color + "')]"));
+        System.out.println(list.size());
+
+        // Asserting that number of those elements is equal to the expected number
+        Assert.assertEquals(list.size(), numberOfProducts);
+
     }
 }
