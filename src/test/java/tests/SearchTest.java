@@ -1,6 +1,7 @@
 package tests;
 
 import data.InputData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.Main;
 import pages.Search;
@@ -39,7 +40,20 @@ public class SearchTest extends ConditionsWebDriverFactory {
         Search search = new Search();
         search.searchBy(searchText);
         search.expectedNumberOfProducts(numberOfProducts);
-        search.productsWithAttributeDisplayed("Blue", numberOfProducts);
+        search.productsWithAttributeDisplayed(searchText, numberOfProducts);
+
+    }
+
+    @Test (dataProviderClass = InputData.class, dataProvider = "searchByWrongValue")
+    public void searchWrongValue(String searchText) {
+
+        Main main = new Main();
+
+        Search search = new Search();
+        search.searchBy(searchText);
+
+        // Asserting that search returned no results
+        Assert.assertTrue(search.noResultsText.isDisplayed());
 
     }
 

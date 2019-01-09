@@ -23,6 +23,9 @@ public class Search extends BasePage {
     @FindBy (xpath = "//span[contains(@class,'base') and contains(text(),'Search results for:')]")
     private WebElement searchResultsText;
 
+    @FindBy (xpath = "//div[contains(text(),'Your search returned no results.')]")
+    public WebElement noResultsText;
+
     @Override
     protected void openPage() {
         //do nothing
@@ -59,7 +62,6 @@ public class Search extends BasePage {
 
         // Getting an array of elements that have appropriate color attribute
         List<WebElement> list = Drivers.getDriver().findElements(By.xpath("//div[contains(@class,'swatch-option color') and contains(@option-label,'" + color + "')]"));
-        System.out.println(list.size());
 
         // Asserting that number of those elements is equal to the expected number
         Assert.assertEquals(list.size(), numberOfProducts);

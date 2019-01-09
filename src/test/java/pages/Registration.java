@@ -1,7 +1,6 @@
 package pages;
 
 import data.Links;
-import data.Users;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -110,7 +109,7 @@ public class Registration extends BasePage {
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.titleIs(expectedTitle));
         wait.until(ExpectedConditions.visibilityOf(createAccountButton));
-        elementIsPresented(createAccountButton);
+        elementIsDisplayed(createAccountButton);
 
         System.out.println("Registration page is opened");
         return true;

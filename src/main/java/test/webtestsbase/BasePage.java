@@ -58,7 +58,7 @@ public abstract class BasePage {
         return Drivers.getDriver();
     }
 
-    public boolean elementIsPresented(WebElement element) {
+    public boolean elementIsDisplayed(WebElement element) {
         Dimension size = element.getSize();
         int result;
         result = size.getHeight() + size.getWidth();
@@ -66,7 +66,7 @@ public abstract class BasePage {
         return result > 0;
     }
 
-    public void elementIsNotPresented(WebElement element) {
+    public void elementIsNotDIsplayed(WebElement element) {
         Dimension size = element.getSize();
         int result;
         result = size.getHeight() + size.getWidth();
@@ -75,8 +75,8 @@ public abstract class BasePage {
         Assert.assertEquals(result, 0);
     }
 
-    public void scrollDown() {
+    public void scrollDown(int x, int y) {
         JavascriptExecutor jsx = (JavascriptExecutor)getDriver();
-        jsx.executeScript("window.scrollBy(0,450)", "");
+        jsx.executeScript("window.scrollBy(" + x + "," + y + ")", "");
     }
 }

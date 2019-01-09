@@ -42,7 +42,16 @@ public class InputData {
 
         return new Object[][] {
                 // Search word, expected number of products found
-                {"blue", 9}
+                {"Blue", 9}
+        };
+    }
+
+    @DataProvider (name = "searchByWrongValue")
+    public static Object[][] searchByWrongValue() {
+
+        return new Object[][] {
+                // Search word, expected number of products found
+                {"ZZZZZ"}
         };
     }
 

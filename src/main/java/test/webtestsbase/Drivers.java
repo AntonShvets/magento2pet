@@ -39,9 +39,9 @@ public class Drivers {
     }
 
     /**
-     * Main method of class - it initialize driver and starts browser.
+     * Main method of class - initializes driver and starts browser.
      *
-     * @param isLocal - is tests will be started local or not
+     * @param isLocal - are tests will be started locally or not
      */
     public static void startBrowser(boolean isLocal) {
         if (driver == null) {

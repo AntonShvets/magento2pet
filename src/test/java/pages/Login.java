@@ -47,7 +47,7 @@ public class Login extends BasePage {
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.titleIs(expectedTitle));
         wait.until(ExpectedConditions.visibilityOf(signInButton));
-        elementIsPresented(signInButton);
+        elementIsDisplayed(signInButton);
 
         System.out.println("Login page is opened");
         return true;
