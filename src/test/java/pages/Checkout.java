@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
+import utilities.Log;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -72,7 +73,7 @@ public class Checkout extends BasePage {
     private WebElement placeOrderButton;
 
     @FindBy(xpath = "//span[contains(text(),'Thank you for your purchase!')]")
-    private WebElement orderConfirmationMessage;
+    public WebElement orderConfirmationMessage;
 
     @FindBy(xpath = "//input[contains(@value,'Create an Account')]")
     private WebElement createAnAccountButton;
@@ -101,28 +102,20 @@ public class Checkout extends BasePage {
 
     @Override
     protected void openPage() {
-        System.out.println("Opening Checkout page");
-        //do nothing
+        Log.info("Opening Checkout page");
     }
 
     @Override
     public boolean isPageOpened() {
         WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.elementToBeClickable(nextButton));
-        System.out.println("Checkout page is opened");
+        Log.info("Checkout page is opened");
         return nextButton.isDisplayed();
     }
 
-    public void fillInGuestData() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
-        Date date = new Date();
-
-        emailField.sendKeys("selenium_test_" + dateFormat.format(date) + "@monsoonconsulting.com");
-        firstNameField.sendKeys("Selenium");
-        lastNameField.sendKeys("WebDriver");
-    }
-
     public void registerGuestUser() {
+
+        Log.info("Registering new user");
         Users user = new Users();
 
         createAnAccountButton.isDisplayed();
@@ -131,26 +124,11 @@ public class Checkout extends BasePage {
         passwordField.sendKeys(user.getCorrectPassword());
         passwordConfirmationField.sendKeys(user.getCorrectPassword());
         createAccountButton.click();
-        myAccountText.isDisplayed();
-    }
-
-    public void fillInShippingDetails() {
-        companyField.sendKeys("Monsoon Consulting");
-        streetOneField.sendKeys("1 Terminus Mills");
-        streetTwoField.sendKeys("Clonskeagh road");
-        cityField.sendKeys("Dublin");
-        stateProvinceField.sendKeys("Dublin");
-        zipCodeField.sendKeys("A12 3BC");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        phoneNumberField.sendKeys("08312345678");
     }
 
     public void fillInGuestShippingDetails(String email) {
 
+        Log.info("Filling in guest shipping details");
         emailField.sendKeys(email);
         firstNameField.sendKeys("test");
         lastNameField.sendKeys("test");
@@ -168,6 +146,7 @@ public class Checkout extends BasePage {
 
     public void chooseShippingMethodProceed(String method) {
 
+        Log.info("Choosing " + method + " shipping method");
         if (method == "FlatRate") {
             flatRateCheckbox.click();
         } else nextButton.click();
@@ -177,6 +156,7 @@ public class Checkout extends BasePage {
 
     public void placeOrder() {
 
+        Log.info("Placing the order");
         placeOrderButton.isDisplayed();
 
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
@@ -184,7 +164,6 @@ public class Checkout extends BasePage {
 
         placeOrderButton.click();
 
-        orderConfirmationMessage.isDisplayed();
     }
 
 }

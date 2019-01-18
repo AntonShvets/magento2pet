@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
+import utilities.Log;
 
 /**
  * Main page behavior described
@@ -25,7 +26,7 @@ public class Main extends BasePage {
     @Override
     public void openPage() {
         Drivers.getDriver().get(PAGE_URL);
-        System.out.println("Opening Main page");
+        Log.info("Opening Main page");
     }
 
     @Override
@@ -35,7 +36,7 @@ public class Main extends BasePage {
         WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.titleIs(expectedTitle));
         wait.until(ExpectedConditions.visibilityOf(addToCartButton));
-        System.out.println("Main page is opened");
+        Log.info("Main page is opened");
         return true;
     }
 

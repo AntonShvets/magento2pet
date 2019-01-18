@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
+import utilities.Log;
 
 /**
  * Created by anton on 15/05/18.
@@ -33,7 +34,7 @@ public class Cart extends BasePage {
     @Override
     public void openPage() {
         getDriver().get(PAGE_URL);
-        System.out.println("Opening Cart page");
+        Log.info("Opening Cart page");
     }
 
     @Override
@@ -43,15 +44,17 @@ public class Cart extends BasePage {
         WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.titleIs(expectedTitle));
 
-        System.out.println("Cart page is opened");
+        Log.info("Cart page is opened");
         return shoppingCartText.isDisplayed();
     }
 
     public void checkIfCartIsEmpty() {
 
+        Log.info("Checking if the Cart is empty");
         if (Drivers.getDriver().getPageSource().contains("You have no items in your shopping cart.")) {
-            System.out.println("Cart is empty");
+            Log.info("Cart is empty");;
         } else while (!Drivers.getDriver().getPageSource().contains("You have no items in your shopping cart.")) {
+            Log.info("Cart is not empty");
             deleteProductButton.click();
         }
 
@@ -59,6 +62,7 @@ public class Cart extends BasePage {
 
     public void proceedToCheckout() {
 
+        Log.info("Proceeding to Checkout");
         proceedToCheckoutButton.click();
 
     }

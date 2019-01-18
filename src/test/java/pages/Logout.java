@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
+import utilities.Log;
 
 /**
  * Created by anton on 21/05/18.
@@ -27,13 +28,11 @@ public class Logout extends BasePage {
     @Override
     public void openPage() {
         getDriver().get(PAGE_URL);
-        System.out.println("Logging out");
+        Log.info("Logging out");
     }
 
     @Override
     public boolean isPageOpened() {
-
-
         return true;
     }
 
@@ -41,9 +40,9 @@ public class Logout extends BasePage {
 
         String expectedTitle = "Home Page";
 
-        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.visibilityOf(loggedOutText));
         wait.until(ExpectedConditions.titleIs(expectedTitle));
-        System.out.println("User is logged out");
+        Log.info("User is logged out");
     }
 }

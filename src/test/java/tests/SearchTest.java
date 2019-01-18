@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import pages.Main;
 import pages.Search;
 import utilities.ConditionsWebDriverFactory;
+import utilities.Log;
 
 public class SearchTest extends ConditionsWebDriverFactory {
 
@@ -16,7 +17,9 @@ public class SearchTest extends ConditionsWebDriverFactory {
 
         Search search = new Search();
         search.searchBy(searchText);
-        search.expectedNumberOfProducts(numberOfProducts);
+
+        Assert.assertTrue(search.expectedNumberOfProducts(numberOfProducts));
+        Log.info("Checking that " + numberOfProducts + " products displayed in search results");
 
     }
 
@@ -28,7 +31,9 @@ public class SearchTest extends ConditionsWebDriverFactory {
         Search search = new Search();
         search.searchBy(searchText);
         search.expectedNumberOfProducts(numberOfProducts);
-        search.productNameIsDisplayed(productName);
+
+        Assert.assertTrue(search.productNameIsDisplayed(productName));
+        Log.info("Checking that " + productName + " product name is displayed in search results");
 
     }
 
@@ -40,7 +45,9 @@ public class SearchTest extends ConditionsWebDriverFactory {
         Search search = new Search();
         search.searchBy(searchText);
         search.expectedNumberOfProducts(numberOfProducts);
-        search.productsWithAttributeDisplayed(searchText, numberOfProducts);
+
+        Assert.assertEquals(search.productsWithAttributeDisplayed(searchText), numberOfProducts);
+        Log.info("Checking that " + numberOfProducts + " products displayed with attribute: " + searchText);
 
     }
 
@@ -52,9 +59,8 @@ public class SearchTest extends ConditionsWebDriverFactory {
         Search search = new Search();
         search.searchBy(searchText);
 
-        // Asserting that search returned no results
         Assert.assertTrue(search.noResultsText.isDisplayed());
+        Log.info("Asserting that search returned no results");
 
     }
-
 }

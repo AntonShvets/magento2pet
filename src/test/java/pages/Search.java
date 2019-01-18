@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
+import utilities.Log;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Search extends BasePage {
 
     @Override
     protected void openPage() {
-        //do nothing
+        Log.info("Starting to search");
     }
 
     @Override
@@ -38,6 +39,7 @@ public class Search extends BasePage {
 
     public void searchBy(String searchText) {
 
+        Log.info("Searching for: " + searchText);
         searchField.sendKeys(searchText);
         searchField.sendKeys(Keys.ENTER);
 
@@ -45,26 +47,28 @@ public class Search extends BasePage {
 
     }
 
-    public void expectedNumberOfProducts(int number) {
+    public boolean expectedNumberOfProducts(int number) {
 
+        Log.info("Expected number of products in search results: " + number);
         WebElement numberOfProducts = Drivers.getDriver().findElement(By.xpath("//span[contains(@class,'toolbar-number') and contains(text(),'" + number + "')]"));
-        numberOfProducts.isDisplayed();
+        return numberOfProducts.isDisplayed();
 
     }
 
-    public void productNameIsDisplayed(String productName) {
+    public boolean productNameIsDisplayed(String productName) {
 
+        Log.info("Appropriate product name is displayed:" + productName);
         WebElement name = Drivers.getDriver().findElement(By.xpath("//a[contains(@class,'product-item-link') and contains(text(),'" + productName + "')]"));
-        name.isDisplayed();
+        return name.isDisplayed();
     }
 
-    public void productsWithAttributeDisplayed(String color, int numberOfProducts) {
+    public int productsWithAttributeDisplayed(String color) {
 
-        // Getting an array of elements that have appropriate color attribute
+        Log.info("Getting an array of elements that have appropriate color attribute: " + color);
         List<WebElement> list = Drivers.getDriver().findElements(By.xpath("//div[contains(@class,'swatch-option color') and contains(@option-label,'" + color + "')]"));
 
-        // Asserting that number of those elements is equal to the expected number
-        Assert.assertEquals(list.size(), numberOfProducts);
+        Log.info("Returning the number of products that are displayed with appropriate attribute:" + list.size());
+        return list.size();
 
     }
 }

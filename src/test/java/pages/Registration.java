@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
+import utilities.Log;
 
 /**
  * Created by anton on 09/05/18.
@@ -48,23 +49,7 @@ public class Registration extends BasePage {
     public WebElement confirmPasswordField;
 
     @FindBy(css = ".message-success.success.message>div")
-    public WebElement successMessage;
-
-    @FindBy(id = "firstname-error")
-    public WebElement firstNameErrorMessage;
-
-    @FindBy(id = "lastname-error")
-    public WebElement lastNameErrorMessage;
-
-    @FindBy(id = "email_address-error")
-    public WebElement emailErrorMessage;
-
-    @FindBy(id = "password-error")
-    public WebElement passwordErrorMessage;
-
-    @FindBy(id = "password-confirmation-error")
-    public WebElement passwordConfirmationErrorMessage;
-
+    private WebElement successMessage;
 
     /*
     * Error messages
@@ -99,7 +84,7 @@ public class Registration extends BasePage {
     @Override
     public void openPage() {
         getDriver().get(PAGE_URL);
-        System.out.println("Opening Registration page");
+        Log.info("Opening Registration page");
     }
 
     @Override
@@ -111,12 +96,13 @@ public class Registration extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(createAccountButton));
         elementIsDisplayed(createAccountButton);
 
-        System.out.println("Registration page is opened");
+        Log.info("Registration page is opened");
         return true;
     }
 
     public void registerNewUser(String email, String firstName, String lastName, String password, String confirmationPassword) {
 
+        Log.info("Registering new user using the following data: " + "email: " + email + ", first name: " + firstName + ", last name: " + lastName + ", password: " + password);
         firstNameField.sendKeys(firstName);
         lastNameField.sendKeys(lastName);
         emailField.sendKeys(email);
@@ -126,10 +112,13 @@ public class Registration extends BasePage {
 
     }
 
-    public void registrationSuccessful() {
+    public boolean registrationSuccessful() {
 
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.visibilityOf(successMessage));
+
+        Log.info("Registration was successful");
+        return successMessage.isDisplayed();
 
     }
 }

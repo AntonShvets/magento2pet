@@ -3,9 +3,11 @@ package tests;
 import data.InputData;
 import data.Links;
 import data.Users;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utilities.ConditionsWebDriverFactory;
+import utilities.Log;
 
 /**
  * Test cases that are responsible for the customer's registration procedure and all activities that can happen before the registration procedure
@@ -27,7 +29,9 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
                 user.defaultLastName,
                 user.getCorrectPassword(),
                 user.getCorrectPassword());
-        registration.registrationSuccessful();
+
+        Assert.assertTrue(registration.registrationSuccessful());
+        Log.info("Checking that registration was successful");
 
         Logout logout = new Logout();
         logout.successful();
@@ -56,6 +60,9 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
         checkout.placeOrder();
         checkout.registerGuestUser();
 
+        Assert.assertTrue(checkout.myAccountText.isDisplayed());
+        Log.info("Checking that newly created customer has logged in successfully");
+
         Logout logout = new Logout();
         logout.successful();
 
@@ -66,15 +73,15 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
      */
     @Test
     public void allFieldsAreRequired() {
-
         Registration page = new Registration();
         page.createAccountButton.click();
-        page.firstNameRequiredError.isDisplayed();
-        page.lastNameRequiredError.isDisplayed();
-        page.emailRequiredError.isDisplayed();
-        page.passwordRequiredError.isDisplayed();
-        page.passwordConfirmationRequiredError.isDisplayed();
 
+        Assert.assertTrue(page.firstNameRequiredError.isDisplayed());
+        Assert.assertTrue(page.lastNameRequiredError.isDisplayed());
+        Assert.assertTrue(page.emailRequiredError.isDisplayed());
+        Assert.assertTrue(page.passwordRequiredError.isDisplayed());
+        Assert.assertTrue(page.passwordConfirmationRequiredError.isDisplayed());
+        Log.info("Checking that appropriate error messages are displayed on the page");
     }
 
     /*
@@ -93,7 +100,9 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
                 user.getCorrectPassword(),
                 user.getCorrectPassword()
         );
-        page.emailAlreadyExistsError.isDisplayed();
+
+        Assert.assertTrue(page.emailAlreadyExistsError.isDisplayed());
+        Log.info("Checking that appropriate error message is displayed on the page");
 
     }
 
@@ -113,7 +122,9 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
                 user.getShortPassword(),
                 user.getShortPassword()
         );
-        page.passwordIsShortError.isDisplayed();
+
+        Assert.assertTrue(page.passwordIsShortError.isDisplayed());
+        Log.info("Checking that appropriate error message is displayed on the page");
 
     }
 
@@ -133,7 +144,9 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
                 user.getCorrectPassword(),
                 user.getIncorrectPassword()
         );
-        page.confirmationPasswordIsWrongError.isDisplayed();
+
+        Assert.assertTrue(page.confirmationPasswordIsWrongError.isDisplayed());
+        Log.info("Checking that appropriate error message is displayed on the page");
 
     }
 
@@ -144,17 +157,21 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     @Test
     public void wrongEmailFormat() {
 
+        String wrongValue = "@";
+
         Users user = new Users();
 
         Registration page = new Registration();
         page.registerNewUser(
-                user.getEmail()+"@",
+                user.getEmail() + wrongValue,
                 user.defaultFirstName,
                 user.defaultLastName,
                 user.getCorrectPassword(),
                 user.getCorrectPassword()
         );
-        page.emailIsWrongError.isDisplayed();
+
+        Assert.assertTrue(page.emailIsWrongError.isDisplayed());
+        Log.info("Checking that appropriate error message is displayed on the page");
 
     }
 }

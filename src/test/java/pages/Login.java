@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
+import utilities.Log;
 
 /**
  * Created by anton on 21/05/18.
@@ -26,7 +27,7 @@ public class Login extends BasePage {
     private WebElement emailField;
 
     @FindBy(css = "#pass")
-    public WebElement passwordField;
+    private WebElement passwordField;
 
     @FindBy(xpath = "//a[contains(text(), 'My Account')]")
     private WebElement myAccountText;
@@ -37,7 +38,7 @@ public class Login extends BasePage {
     @Override
     public void openPage() {
         getDriver().get(PAGE_URL);
-        System.out.println("Opening Login page");
+        Log.info("Opening Login page");
     }
 
     @Override
@@ -49,29 +50,23 @@ public class Login extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(signInButton));
         elementIsDisplayed(signInButton);
 
-        System.out.println("Login page is opened");
+        Log.info("Login page is opened");
         return true;
     }
 
     public void logIn(String email, String password) {
-//        Users user = new Users();
 
-        System.out.println("User name is: " + email);
+        Log.info("Logging in with username: " + email + ", password: " + password);
 
-        emailField.sendKeys(email); // Users.permanentUserName
-        passwordField.sendKeys(password); // user.getPassword()
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
         signInButton.click();
 
     }
 
-    public void loginSuccessfull() {
+    public void loginSuccessful() {
         myAccountText.isDisplayed();
-        System.out.println("User logged in successfully");
-    }
-
-    public void loginNotSuccessfull() {
-        loginErrorMessage.isDisplayed();
-        System.out.println("Login failed as expected");
+        Log.info("User logged in successfully");
     }
 
 
