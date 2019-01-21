@@ -19,7 +19,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     */
     @Test
     public void customerRegistration() {
-
         Users user = new Users();
 
         Registration registration = new Registration();
@@ -42,7 +41,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     */
     @Test (dataProviderClass = InputData.class, dataProvider = "productArcadioGymShort")
     public void guestOrderCustomerRegistration(int size, String color) {
-
         ProductPage page = new ProductPage();
         page.open(Links.productArcadioGymShort);
         page.selectSize(size);
@@ -55,7 +53,7 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
         Users user = new Users();
 
         Checkout checkout = new Checkout();
-        checkout.fillInGuestShippingDetails(user.getEmail());
+        checkout.fillInGuestShippingDetails();
         checkout.chooseShippingMethodProceed(InputData.flatRateShippingMethod);
         checkout.placeOrder();
         checkout.registerGuestUser();
@@ -65,7 +63,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
 
         Logout logout = new Logout();
         logout.successful();
-
     }
 
     /*
@@ -89,7 +86,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
     * */
     @Test
     public void emailAlreadyExists() {
-
         Users user = new Users();
 
         Registration page = new Registration();
@@ -103,7 +99,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
 
         Assert.assertTrue(page.emailAlreadyExistsError.isDisplayed());
         Log.info("Checking that appropriate error message is displayed on the page");
-
     }
 
     /*
@@ -111,7 +106,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
      * */
     @Test
     public void shortPassword() {
-
         Users user = new Users();
 
         Registration page = new Registration();
@@ -125,7 +119,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
 
         Assert.assertTrue(page.passwordIsShortError.isDisplayed());
         Log.info("Checking that appropriate error message is displayed on the page");
-
     }
 
     /*
@@ -133,7 +126,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
      * */
     @Test
     public void wrongConfirmationPassword() {
-
         Users user = new Users();
 
         Registration page = new Registration();
@@ -147,7 +139,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
 
         Assert.assertTrue(page.confirmationPasswordIsWrongError.isDisplayed());
         Log.info("Checking that appropriate error message is displayed on the page");
-
     }
 
     /*
@@ -156,7 +147,6 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
 
     @Test
     public void wrongEmailFormat() {
-
         String wrongValue = "@";
 
         Users user = new Users();
@@ -172,6 +162,5 @@ public class RegistrationTest extends ConditionsWebDriverFactory {
 
         Assert.assertTrue(page.emailIsWrongError.isDisplayed());
         Log.info("Checking that appropriate error message is displayed on the page");
-
     }
 }

@@ -15,7 +15,7 @@ import utilities.Log;
  */
 public class Registration extends BasePage {
 
-    private static final String PAGE_URL = Links.main + "customer/account/create/";
+    private static final String PAGE_URL = Links.main + Links.registration;
 
     public Registration() {
         super(true);
@@ -29,15 +29,6 @@ public class Registration extends BasePage {
 
     @FindBy(css = "#lastname")
     private WebElement lastNameField;
-
-    @FindBy(css = "#is_subscribed")
-    private WebElement newsletterCheckbox;
-
-    @FindBy(css = "#dob")
-    private WebElement dateOfBirthField;
-
-    @FindBy(css = "#gender")
-    private WebElement genderField;
 
     @FindBy(css = "#email_address")
     private WebElement emailField;
@@ -101,7 +92,6 @@ public class Registration extends BasePage {
     }
 
     public void registerNewUser(String email, String firstName, String lastName, String password, String confirmationPassword) {
-
         Log.info("Registering new user using the following data: " + "email: " + email + ", first name: " + firstName + ", last name: " + lastName + ", password: " + password);
         firstNameField.sendKeys(firstName);
         lastNameField.sendKeys(lastName);
@@ -109,16 +99,13 @@ public class Registration extends BasePage {
         passwordField.sendKeys(password);
         confirmPasswordField.sendKeys(confirmationPassword);
         createAccountButton.click();
-
     }
 
     public boolean registrationSuccessful() {
-
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.visibilityOf(successMessage));
 
         Log.info("Registration was successful");
         return successMessage.isDisplayed();
-
     }
 }

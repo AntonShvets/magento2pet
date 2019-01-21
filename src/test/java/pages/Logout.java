@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sun.awt.image.ImageWatched;
 import test.webtestsbase.BasePage;
 import utilities.Log;
 
@@ -16,7 +17,7 @@ import utilities.Log;
 public class Logout extends BasePage {
 
 
-    private static final String PAGE_URL = Links.main + "customer/account/logout";
+    private static final String PAGE_URL = Links.main + Links.logout;
 
     public Logout() {
         super(true);
@@ -37,7 +38,6 @@ public class Logout extends BasePage {
     }
 
     public void successful() {
-
         String expectedTitle = "Home Page";
 
         WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);

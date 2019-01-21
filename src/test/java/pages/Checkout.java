@@ -78,16 +78,6 @@ public class Checkout extends BasePage {
     @FindBy(xpath = "//input[contains(@value,'Create an Account')]")
     private WebElement createAnAccountButton;
 
-    @FindBy(xpath = "//span[contains(text(), 'Check / Money order')]")
-    private WebElement checkMoneyOrderButton;
-
-    @FindBy(xpath = "//input[contains(@value,'checkmo')]")
-    private WebElement checkMoneyCheckBox;
-
-    @FindAll({
-            @FindBy(xpath = "//button[contains(@title,'Place Order')]")
-    }) public List<WebElement> placeOrderList;
-
     @FindBy(name = "password")
     private WebElement passwordField;
 
@@ -95,7 +85,7 @@ public class Checkout extends BasePage {
     private WebElement passwordConfirmationField;
 
     @FindBy(xpath = "//button[contains(@title,'Create an Account')]")
-    public WebElement createAccountButton;
+    private WebElement createAccountButton;
 
     @FindBy (xpath = "//span[contains(text(),'My Account')]")
     public WebElement myAccountText;
@@ -114,7 +104,6 @@ public class Checkout extends BasePage {
     }
 
     public void registerGuestUser() {
-
         Log.info("Registering new user");
         Users user = new Users();
 
@@ -126,26 +115,25 @@ public class Checkout extends BasePage {
         createAccountButton.click();
     }
 
-    public void fillInGuestShippingDetails(String email) {
+    public void fillInGuestShippingDetails() {
+        Users user = new Users();
 
         Log.info("Filling in guest shipping details");
-        emailField.sendKeys(email);
-        firstNameField.sendKeys("test");
-        lastNameField.sendKeys("test");
-        companyField.sendKeys("test");
-        streetOneField.sendKeys("test");
-        streetTwoField.sendKeys("test");
-        streetThreeField.sendKeys("test");
-        cityField.sendKeys("test");
-        countryDropDown.selectByVisibleText("Ireland");
-        zipCodeField.sendKeys("test");
-        phoneNumberField.sendKeys("0838844074");
-        stateProvinceField.sendKeys("Dublin");
-
+        emailField.sendKeys(user.getEmail());
+        firstNameField.sendKeys(Users.defaultFirstName);
+        lastNameField.sendKeys(Users.defaultLastName);
+        companyField.sendKeys(Users.company);
+        streetOneField.sendKeys(Users.streetOne);
+        streetTwoField.sendKeys(Users.streetTwo);
+        streetThreeField.sendKeys(Users.streetThree);
+        cityField.sendKeys(Users.city);
+        countryDropDown.selectByVisibleText(Users.country);
+        zipCodeField.sendKeys(Users.zip);
+        phoneNumberField.sendKeys(Users.telephone);
+        stateProvinceField.sendKeys(Users.province);
     }
 
     public void chooseShippingMethodProceed(String method) {
-
         Log.info("Choosing " + method + " shipping method");
         if (method == "FlatRate") {
             flatRateCheckbox.click();
@@ -155,7 +143,6 @@ public class Checkout extends BasePage {
     }
 
     public void placeOrder() {
-
         Log.info("Placing the order");
         placeOrderButton.isDisplayed();
 
@@ -163,7 +150,6 @@ public class Checkout extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(placeOrderButton));
 
         placeOrderButton.click();
-
     }
 
 }

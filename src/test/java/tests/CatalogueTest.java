@@ -17,7 +17,6 @@ public class CatalogueTest extends ConditionsWebDriverFactory {
     * */
     @Test
     public void filtering() {
-
         String filterCategory = "Style";
         String filterAttribute = "Full Zip";
 
@@ -32,7 +31,6 @@ public class CatalogueTest extends ConditionsWebDriverFactory {
 
         Assert.assertTrue(catalogue.productsInCatalogue(productsInFilteredCatalogue));
         Log.info("Checking that after filtering page contains " + productsInFilteredCatalogue + " products");
-
     }
 
     /*
@@ -40,7 +38,6 @@ public class CatalogueTest extends ConditionsWebDriverFactory {
     * */
     @Test
     public void sorting() {
-
         String sortingAttribute = "Price";
 
         Catalogue catalogue = new Catalogue();
@@ -49,7 +46,6 @@ public class CatalogueTest extends ConditionsWebDriverFactory {
 
         Assert.assertTrue(catalogue.sortingIsCorrect());
         Log.info("Checking that new sorted array is equal to the original one");
-
     }
 
     /*
@@ -57,7 +53,6 @@ public class CatalogueTest extends ConditionsWebDriverFactory {
     * */
     @Test
     public void pagination() {
-
         int productsExpectedOnThePage = 3;
         int pageNumber = 2;
 
@@ -67,6 +62,5 @@ public class CatalogueTest extends ConditionsWebDriverFactory {
 
         Assert.assertEquals(catalogue.productsOnThePage(), productsExpectedOnThePage);
         Log.info("Checking that page " + pageNumber + " contains " + productsExpectedOnThePage + " products");
-
     }
 }

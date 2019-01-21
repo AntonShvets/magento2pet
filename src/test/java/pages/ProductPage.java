@@ -41,26 +41,21 @@ public class ProductPage extends BasePage {
     }
 
     public void selectSize(int size) {
-
         Log.info("Selecting size attribute: " + size);
         WebElement sizeElement = Drivers.getDriver().findElement(By.xpath("//div[contains(@option-label,'" + size + "')]"));
         sizeElement.click();
-
     }
 
     public void selectColor(String color) {
-
         Log.info("Selecting color attribute:" + color);
         WebElement colorElement = Drivers.getDriver().findElement(By.xpath("//div[contains(@option-label,'" + color + "')]"));
         colorElement.click();
     }
 
     public void addToCart() {
-
         Log.info("Clicking Add to Cart button");
         addToCartButton.click();
         successMessage.isDisplayed();
-
     }
 
 }

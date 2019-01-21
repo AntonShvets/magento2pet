@@ -40,47 +40,36 @@ public class Catalogue extends BasePage {
     }
 
     public void open(String link) {
-
         Drivers.getDriver().get(Links.main + link);
         productsGrid.isDisplayed();
         Log.info(link + " page is opened");
-
     }
 
     public void expandFilter(String attribute) {
-
         Log.info("Expanding filter with " + attribute + " attribute");
         WebElement attributeName = Drivers.getDriver().findElement(By.xpath("//div[contains(text(),'" + attribute + "')]"));
         attributeName.click();
-
     }
 
     public void filterBy(String attributeValue) {
-
         Log.info("Filtering by " + attributeValue + " attribute");
         WebElement attributeValueName = Drivers.getDriver().findElement(By.xpath("//a[contains(text(),'" + attributeValue + "')]"));
         attributeValueName.click();
-
     }
 
     public boolean productsInCatalogue(int number) {
-
         Log.info("Checking that Catalogue page contains " + number + " products");
         WebElement numberOfProducts = Drivers.getDriver().findElement(By.xpath("//span[contains(@class,'toolbar-number') and contains(text(),'" + number + "')]"));
         return numberOfProducts.isDisplayed();
-
     }
 
     public void sortBy(String parameter) {
-
         Log.info("Sorting by " + parameter + " parameter");
         Select sortByDropDown = new Select(Drivers.getDriver().findElement(By.id("sorter")));
         sortByDropDown.selectByVisibleText(parameter);
-
     }
 
     public boolean sortingIsCorrect() {
-
         ArrayList<String> obtainedList = new ArrayList<>();
         List<WebElement> elementList = priceValues;
 
@@ -98,26 +87,21 @@ public class Catalogue extends BasePage {
         Collections.sort(sortedList);
 
         return sortedList.equals(obtainedList);
-
     }
 
     public void goToPage(int pageNumber) {
-
         Log.info("Going to page # " + pageNumber);
         String currentUrl = Drivers.getDriver().getCurrentUrl();
         Drivers.getDriver().get(currentUrl + "?p=" + pageNumber);
-
     }
 
     public int productsOnThePage() {
-
         Log.info("Getting a list of products that are on the page");
         List<WebElement> elementList = priceValues;
         int actualNumberOfProducts = elementList.size();
 
         Log.info("Products on the page: " + actualNumberOfProducts);
         return actualNumberOfProducts;
-
     }
 
 }

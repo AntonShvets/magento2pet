@@ -14,7 +14,7 @@ import utilities.Log;
  */
 public class Login extends BasePage {
 
-    public static final String PAGE_URL = Links.main + "customer/account/login/";
+    public static final String PAGE_URL = Links.main + Links.login;
 
     public Login() {
         super(true);
@@ -31,9 +31,6 @@ public class Login extends BasePage {
 
     @FindBy(xpath = "//a[contains(text(), 'My Account')]")
     private WebElement myAccountText;
-
-    @FindBy(xpath = "//div[contains(@data-ui-id, 'message-error')]")
-    private WebElement loginErrorMessage;
 
     @Override
     public void openPage() {
@@ -55,13 +52,11 @@ public class Login extends BasePage {
     }
 
     public void logIn(String email, String password) {
-
         Log.info("Logging in with username: " + email + ", password: " + password);
 
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         signInButton.click();
-
     }
 
     public void loginSuccessful() {

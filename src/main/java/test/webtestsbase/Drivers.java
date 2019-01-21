@@ -87,7 +87,6 @@ public class Drivers {
      * This method calls in tests listeners on test fail
      */
     public static void takeScreenShot(ITestResult testResult) {
-
         if (testResult.getStatus() == ITestResult.FAILURE) {
             try {
                 Date date = new Date();

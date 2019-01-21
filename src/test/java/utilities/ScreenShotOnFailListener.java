@@ -16,7 +16,6 @@ public class ScreenShotOnFailListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-
     }
 
     @Override

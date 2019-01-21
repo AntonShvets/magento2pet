@@ -16,7 +16,6 @@ public class ConditionsWebDriverFactory {
 
     @BeforeClass
     public void beforeTest() {
-
         Drivers.startBrowser(true);
         Drivers.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 //        Drivers.getDriver().manage().window().fullscreen();

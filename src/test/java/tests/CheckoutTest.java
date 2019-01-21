@@ -44,7 +44,6 @@ public class CheckoutTest extends ConditionsWebDriverFactory {
 
         Assert.assertTrue(checkout.orderConfirmationMessage.isDisplayed());
         Log.info("Checking that order confirmation message is displayed");
-
     }
 
     @AfterMethod(alwaysRun = true)

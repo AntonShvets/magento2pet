@@ -12,7 +12,6 @@ public class InputData {
 
     @DataProvider (name = "productArcadioGymShort")
     public static Object[][] attributes() {
-
         return new Object[][] {
                 // Size, Color
                 {32, "Red"}
@@ -21,7 +20,6 @@ public class InputData {
 
     @DataProvider (name = "searchByProductName")
     public static Object[][] searchByProductName() {
-
         return new Object[][] {
                 // Search word, expected number of products found
                 {"tee", 26}
@@ -30,7 +28,6 @@ public class InputData {
 
     @DataProvider (name = "searchByProductSku")
     public static Object[][] searchByProductSku() {
-
         return new Object[][] {
                 // Search word, expected number of products found
                 {"WS04", 1, "Layla Tee"}
@@ -39,7 +36,6 @@ public class InputData {
 
     @DataProvider (name = "searchByProductAttribute")
     public static Object[][] searchByProductAttribute() {
-
         return new Object[][] {
                 // Search word, expected number of products found
                 {"Blue", 9}
@@ -48,7 +44,6 @@ public class InputData {
 
     @DataProvider (name = "searchByWrongValue")
     public static Object[][] searchByWrongValue() {
-
         return new Object[][] {
                 // Search word, expected number of products found
                 {"ZZZZZ"}

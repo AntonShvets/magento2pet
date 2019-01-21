@@ -16,7 +16,7 @@ import utilities.Log;
  */
 public class Cart extends BasePage {
 
-    private static final String PAGE_URL = Links.main + "checkout/cart/";
+    private static final String PAGE_URL = Links.main + Links.cart;
 
     public Cart() {
         super(true);
@@ -49,7 +49,6 @@ public class Cart extends BasePage {
     }
 
     public void checkIfCartIsEmpty() {
-
         Log.info("Checking if the Cart is empty");
         if (Drivers.getDriver().getPageSource().contains("You have no items in your shopping cart.")) {
             Log.info("Cart is empty");;
@@ -57,13 +56,10 @@ public class Cart extends BasePage {
             Log.info("Cart is not empty");
             deleteProductButton.click();
         }
-
     }
 
     public void proceedToCheckout() {
-
         Log.info("Proceeding to Checkout");
         proceedToCheckoutButton.click();
-
     }
 }
