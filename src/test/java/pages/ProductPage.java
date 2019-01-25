@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
 import utilities.Log;
@@ -23,6 +24,9 @@ public class ProductPage extends BasePage {
 
     @FindBy(xpath = "//div[contains(text(), 'You added ')]")
     private WebElement successMessage;
+
+    @FindBy (xpath = "//span[contains(text(),'Add to Wish List')]")
+    private WebElement addToWishListButton;
 
     @Override
     protected void openPage() {
@@ -56,6 +60,13 @@ public class ProductPage extends BasePage {
         Log.info("Clicking Add to Cart button");
         addToCartButton.click();
         successMessage.isDisplayed();
+    }
+
+    public void addToWishList() {
+        String expectedURL = "My Wish List";
+        Log.info("Adding product to WishList");
+        addToWishListButton.click();
+        Assert.assertEquals(Drivers.getDriver().getTitle(),expectedURL);
     }
 
 }

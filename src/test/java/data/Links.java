@@ -21,6 +21,9 @@ public class Links {
     // Registration
     public final static String registration = "customer/account/create/";
 
+    //Wishlist
+    public final static String wishList = "wishlist/";
+
     // Products
     public final static String productArcadioGymShort = "arcadio-gym-short.html";
 
