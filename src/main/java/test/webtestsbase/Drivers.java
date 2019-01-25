@@ -4,10 +4,14 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.testng.ITestResult;
 import test.configuration.TestsConfig;
 
@@ -51,16 +55,26 @@ public class Drivers {
             } else {
                 switch (browser) {
                     case FIREFOX:
-                        driver = new FirefoxDriver(CapabilitiesGenerator.getDefaultCapabilities(Browser.FIREFOX));
+                        FirefoxOptions firefoxOptions = new FirefoxOptions();
+                        driver = new FirefoxDriver(firefoxOptions);
+                        break;
+                    case CHROMEHEADLESS:
+                        ChromeOptions chromeHeadlessOptions = new ChromeOptions();
+                        chromeHeadlessOptions.setBinary("/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary");
+                        chromeHeadlessOptions.addArguments("--headless");
+                        driver = new ChromeDriver(chromeHeadlessOptions);
                         break;
                     case CHROME:
-                        driver = new ChromeDriver(CapabilitiesGenerator.getDefaultCapabilities(Browser.CHROME));
+                        ChromeOptions chromeOptions = new ChromeOptions();
+                        driver = new ChromeDriver(chromeOptions);
                         break;
                     case IE10:
-                        driver = new InternetExplorerDriver(CapabilitiesGenerator.getDefaultCapabilities(Browser.IE10));
+                        InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+                        driver = new InternetExplorerDriver(ieOptions);
                         break;
                     case SAFARI:
-                        driver = new SafariDriver(CapabilitiesGenerator.getDefaultCapabilities(Browser.SAFARI));
+                        SafariOptions safariOptions = new SafariOptions();
+                        driver = new SafariDriver(safariOptions);
                         break;
                     default:
                         throw new IllegalStateException("Unsupported browser type");
@@ -94,7 +108,7 @@ public class Drivers {
                 File source = ts.getScreenshotAs(OutputType.FILE);
                 FileUtils.copyFile(source, new File("./Screenshots/" + testResult.getInstanceName() + "." + testResult.getName() + "." + date + ".png"));
             } catch (Exception e) {
-                System.out.println("Exception while taking screenshot " + e.getMessage());
+                System.out.println("Exception while taking a screenshot: " + e.getMessage());
             }
         }
     }

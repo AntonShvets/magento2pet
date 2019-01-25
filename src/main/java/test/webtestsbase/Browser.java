@@ -6,6 +6,7 @@ package test.webtestsbase;
 public enum  Browser {
     FIREFOX("firefox"),
     CHROME("chrome"),
+    CHROMEHEADLESS("chromeheadless"),
     IE10("ie10"),
     SAFARI("safari");
     private String browserName;

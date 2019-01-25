@@ -1,8 +1,8 @@
 package utilities;
 
+import org.openqa.selenium.Dimension;
 import org.testng.annotations.*;
 import test.webtestsbase.Drivers;
-
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
@@ -16,9 +16,10 @@ public class ConditionsWebDriverFactory {
 
     @BeforeClass
     public void beforeTest() {
+        Dimension dimension = new Dimension(1920, 1080);
         Drivers.startBrowser(true);
         Drivers.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//        Drivers.getDriver().manage().window().fullscreen();
+        Drivers.getDriver().manage().window().setSize(dimension);
     }
 
     @BeforeMethod
