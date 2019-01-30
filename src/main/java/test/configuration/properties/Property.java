@@ -1,12 +1,14 @@
 package test.configuration.properties;
 
+import test.configuration.BrowserConfig;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotates field of {@link test.configuration.TestsConfig} fields for setting to this field
+ * Annotates field of {@link BrowserConfig} fields for setting to this field
  * value from properties - system or file(about file you could find information in {@link test.configuration.properties.PropertyFile} class javadoc
  */
 @Retention(RetentionPolicy.RUNTIME)

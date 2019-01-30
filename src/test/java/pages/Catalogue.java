@@ -40,7 +40,8 @@ public class Catalogue extends BasePage {
     }
 
     public void open(String link) {
-        Drivers.getDriver().get(Links.main + link);
+        System.out.println("Result: " + Drivers.getUrl());
+        Drivers.getDriver().get(Drivers.getUrl() + link);
         productsGrid.isDisplayed();
         Log.info(link + " page is opened");
     }

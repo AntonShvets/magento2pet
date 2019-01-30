@@ -13,7 +13,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.testng.ITestResult;
-import test.configuration.TestsConfig;
+import test.configuration.BrowserConfig;
+import test.configuration.UrlConfig;
 
 import java.io.File;
 import java.util.Date;
@@ -26,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class Drivers {
     private static final long IMPLICIT_WAIT_TIMEOUT = 5;
     private static org.openqa.selenium.WebDriver driver;
+    private static String url;
 
     /**
      * Getting of pre-configured {@link org.openqa.selenium.WebDriver} instance.
@@ -49,7 +51,7 @@ public class Drivers {
      */
     public static void startBrowser(boolean isLocal) {
         if (driver == null) {
-            Browser browser = TestsConfig.getConfig().getBrowser();
+            Browser browser = BrowserConfig.getConfig().getBrowser();
             if (!isLocal) {
                 driver = new RemoteWebDriver(CapabilitiesGenerator.getDefaultCapabilities(browser));
             } else {
@@ -86,6 +88,11 @@ public class Drivers {
         }
     }
 
+    public static String getUrl() {
+        UrlLoader loader = UrlConfig.getConfig().getUrl();
+        return loader.getUrlName();
+    }
+
     /**
      * Finishes browser
      */
@@ -95,6 +102,7 @@ public class Drivers {
             driver = null;
         }
     }
+
 
     /**
      * Method for screenshot taking.

@@ -6,21 +6,21 @@ import test.configuration.properties.PropertyFile;
 import test.webtestsbase.Browser;
 
 /**
- * Class for base tests properties - urls for test, browser name and version
+ * Class for base tests properties - browser name and version
  */
 @PropertyFile("config.properties")
-public class TestsConfig {
+public class BrowserConfig {
 
-    private static TestsConfig config;
+    private static BrowserConfig config;
 
-    public static TestsConfig getConfig() {
+    public static BrowserConfig getConfig() {
         if (config == null) {
-            config = new TestsConfig();
+            config = new BrowserConfig();
         }
         return config;
     }
 
-    public TestsConfig() {
+    public BrowserConfig() {
         PropertiesLoader.populate(this);
     }
 
@@ -29,7 +29,6 @@ public class TestsConfig {
 
     @Property("browser.version")
     private String version = "";
-
 
     /**
      * getting browser object
