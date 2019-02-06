@@ -1,6 +1,5 @@
 package pages;
 
-import data.Links;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -40,7 +39,6 @@ public class Catalogue extends BasePage {
     }
 
     public void open(String link) {
-        System.out.println("Result: " + Drivers.getUrl());
         Drivers.getDriver().get(Drivers.getUrl() + link);
         productsGrid.isDisplayed();
         Log.info(link + " page is opened");

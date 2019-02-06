@@ -1,4 +1,7 @@
-.idea
-/target
+.idea/
+target/
 .DS_Store
 magento2pet.iml
+allure-results/
+Log4j/
+Screenshots/

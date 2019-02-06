@@ -135,7 +135,7 @@ public class Checkout extends BasePage {
 
     public void chooseShippingMethodProceed(String method) {
         Log.info("Choosing " + method + " shipping method");
-        if (method == "FlatRate") {
+        if (method.equals("FlatRate")) {
             flatRateCheckbox.click();
         } else nextButton.click();
 

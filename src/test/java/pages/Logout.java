@@ -4,10 +4,8 @@ package pages;
 import data.Links;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sun.awt.image.ImageWatched;
 import test.webtestsbase.BasePage;
 import utilities.Log;
 
