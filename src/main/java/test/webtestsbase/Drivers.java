@@ -62,8 +62,10 @@ public class Drivers {
                         break;
                     case CHROMEHEADLESS:
                         ChromeOptions chromeHeadlessOptions = new ChromeOptions();
-                        chromeHeadlessOptions.setBinary("/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary");
+                        chromeHeadlessOptions.setBinary("/usr/bin/google-chrome");
                         chromeHeadlessOptions.addArguments("--headless");
+                        chromeHeadlessOptions.addArguments("--disable-gpu");
+                        chromeHeadlessOptions.addArguments("--no-sandbox");
                         driver = new ChromeDriver(chromeHeadlessOptions);
                         break;
                     case CHROME:
