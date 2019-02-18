@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import test.webtestsbase.BasePage;
 import test.webtestsbase.Drivers;
 import utilities.Log;
@@ -97,8 +98,9 @@ public class Checkout extends BasePage {
 
     @Override
     public boolean isPageOpened() {
-        WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
-        wait.until(ExpectedConditions.elementToBeClickable(nextButton));
+//        WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
+//        wait.until(ExpectedConditions.elementToBeClickable(nextButton));
+        Assert.assertTrue(nextButton.isDisplayed());
         Log.info("Checkout page is opened");
         return nextButton.isDisplayed();
     }
@@ -135,16 +137,19 @@ public class Checkout extends BasePage {
 
     public void chooseShippingMethodProceed(String method) {
         Log.info("Choosing " + method + " shipping method");
+        Assert.assertTrue(nextButton.isDisplayed());
         if (method.equals("FlatRate")) {
             flatRateCheckbox.click();
         } else nextButton.click();
 
         nextButton.click();
+
+        Assert.assertTrue(placeOrderButton.isDisplayed());
     }
 
     public void placeOrder() {
         Log.info("Placing the order");
-        placeOrderButton.isDisplayed();
+        Assert.assertTrue(placeOrderButton.isDisplayed());
 
         WebDriverWait wait = new WebDriverWait(Drivers.getDriver(), defaultTimeout);
         wait.until(ExpectedConditions.elementToBeClickable(placeOrderButton));

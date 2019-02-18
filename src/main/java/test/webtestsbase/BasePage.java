@@ -15,6 +15,8 @@ public abstract class BasePage {
     public int defaultTimeout = 10;
 
     protected static final int WAIT_FOR_PAGE_LOAD_IN_SECONDS = 5;
+
+    public static String MAIN_URL = Drivers.getUrl();
     /**
      * In subclasses  should be used for page opening
      */

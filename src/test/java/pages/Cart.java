@@ -16,7 +16,7 @@ import utilities.Log;
  */
 public class Cart extends BasePage {
 
-    private static final String PAGE_URL = Links.main + Links.cart;
+    private static final String PAGE_URL = MAIN_URL + Links.cart;
 
     public Cart() {
         super(true);

@@ -14,7 +14,7 @@ import utilities.Log;
 
 public class Wishlist extends BasePage {
 
-    public static final String PAGE_URL = Links.main + Links.wishList;
+    public static final String PAGE_URL = MAIN_URL + Links.wishList;
 
     public Wishlist() {
         super(true);

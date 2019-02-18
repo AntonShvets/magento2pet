@@ -6,9 +6,6 @@ package data;
 
 public class Links {
 
-    // Main URL
-    public final static String main = "http://magento-222384-676323.cloudwaysapps.com/";
-
     // Cart
     public final static String cart = "checkout/cart/";
 

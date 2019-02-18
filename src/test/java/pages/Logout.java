@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import test.webtestsbase.BasePage;
+import test.webtestsbase.Drivers;
 import utilities.Log;
 
 /**
@@ -15,7 +17,7 @@ import utilities.Log;
 public class Logout extends BasePage {
 
 
-    private static final String PAGE_URL = Links.main + Links.logout;
+    private static final String PAGE_URL = MAIN_URL + Links.logout;
 
     public Logout() {
         super(true);
@@ -36,11 +38,7 @@ public class Logout extends BasePage {
     }
 
     public void successful() {
-        String expectedTitle = "Home Page";
-
-        WebDriverWait wait = new WebDriverWait(getDriver(), defaultTimeout);
-        wait.until(ExpectedConditions.visibilityOf(loggedOutText));
-        wait.until(ExpectedConditions.titleIs(expectedTitle));
+        Assert.assertTrue(loggedOutText.isDisplayed());
         Log.info("User is logged out");
     }
 }

@@ -15,7 +15,7 @@ import utilities.Log;
  */
 public class Registration extends BasePage {
 
-    private static final String PAGE_URL = Links.main + Links.registration;
+    private static final String PAGE_URL = MAIN_URL + Links.registration;
 
     public Registration() {
         super(true);

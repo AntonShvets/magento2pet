@@ -45,7 +45,7 @@ public class WishListTest extends ConditionsWebDriverFactory {
 
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod
     public void logout() {
         Logout logout = new Logout();
         logout.successful();

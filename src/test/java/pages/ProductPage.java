@@ -39,7 +39,7 @@ public class ProductPage extends BasePage {
     }
 
     public void open(String link) {
-        Drivers.getDriver().get(Links.main + link);
+        Drivers.getDriver().get(MAIN_URL + link);
         addToCartButton.isDisplayed();
         Log.info(link + " product page is opened");
     }

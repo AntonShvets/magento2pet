@@ -46,7 +46,7 @@ public class CheckoutTest extends ConditionsWebDriverFactory {
         Log.info("Checking that order confirmation message is displayed");
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterMethod
     public void logout() {
         Logout logout = new Logout();
         logout.successful();

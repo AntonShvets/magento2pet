@@ -14,7 +14,7 @@ import utilities.Log;
  */
 public class Login extends BasePage {
 
-    public static final String PAGE_URL = Links.main + Links.login;
+    public static final String PAGE_URL = MAIN_URL + Links.login;
 
     public Login() {
         super(true);
